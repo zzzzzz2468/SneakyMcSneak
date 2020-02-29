@@ -16,9 +16,9 @@ public class ManagerScenes : MonoBehaviour
     }
 
     [Header("Finite State Machine")]
-
     public gameState state;
 
+    [Header("Buttons")]
     public Button playBtn;
     public Button setBtn;
 
@@ -39,7 +39,7 @@ public class ManagerScenes : MonoBehaviour
 
     void SetOnClick()
     {
-        state = gameState.Game;
+        state = gameState.Settings;
         GameStateMachine();
     }
 

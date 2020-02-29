@@ -300,6 +300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   playBtn: {fileID: 743777201}
+  setBtn: {fileID: 1435724432}
 --- !u!4 &258318058
 Transform:
   m_ObjectHideFlags: 0
