@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gamemanager;
 
+    private bool detected = false;
+
     private void Awake()
     {
 
@@ -17,6 +19,14 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        if(detected == true)
+        {
+            
         }
     }
 }
