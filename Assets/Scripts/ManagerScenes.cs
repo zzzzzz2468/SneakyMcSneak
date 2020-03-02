@@ -18,17 +18,57 @@ public class ManagerScenes : MonoBehaviour
     [Header("Finite State Machine")]
     public gameState state;
 
-    [Header("Buttons")]
     public Button playBtn;
     public Button setBtn;
+    public Button backBtn;
+
+    public static ManagerScenes managescenes;
+
+    private void Awake()
+    {
+        if (managescenes == null)
+        {
+            managescenes = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void AssignButtons(Button play, Button set, Button back)
+    {
+        playBtn = play;
+        setBtn = set;
+        backBtn = back;
+    }
 
     void Start()
     {
-        Button gameBtn = playBtn.GetComponent<Button>();
-        gameBtn.onClick.AddListener(GameOnClick);
+        if (playBtn != null)
+        {
+            Button playBtnComp = playBtn.GetComponent<Button>();
+            playBtnComp.onClick.AddListener(GameOnClick);
+        }
+        else
+            print("There is no game button");
 
-        Button settingsBtn = setBtn.GetComponent<Button>();
-        settingsBtn.onClick.AddListener(SetOnClick);
+        if (setBtn != null)
+        {
+            Button setBtnComp = setBtn.GetComponent<Button>();
+            setBtnComp.onClick.AddListener(SetOnClick);
+        }
+        else
+            print("There is no setting button");
+
+        if (backBtn != null)
+        {
+            Button backBtnComp = backBtn.GetComponent<Button>();
+            backBtnComp.onClick.AddListener(BackOnClick);
+        }
+        else
+            print("There is no setting button");
     }
 
     void GameOnClick()
@@ -40,6 +80,12 @@ public class ManagerScenes : MonoBehaviour
     void SetOnClick()
     {
         state = gameState.Settings;
+        GameStateMachine();
+    }
+
+    void BackOnClick()
+    {
+        state = gameState.Menu;
         GameStateMachine();
     }
 
