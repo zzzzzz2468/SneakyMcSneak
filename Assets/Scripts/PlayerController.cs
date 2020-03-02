@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //sets up more variables
     public Rigidbody2D player;
     private bool canMove = true;
 
@@ -14,11 +15,6 @@ public class PlayerController : MonoBehaviour
     //creates inputs variables
     private float forwardInput;
     private float rotateInput;
-
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
@@ -33,6 +29,7 @@ public class PlayerController : MonoBehaviour
             Movement();
     }
 
+    //allows other scripts to stop player movement
     public void ChangeMove(bool canMoveThing)
     {
         canMove = canMoveThing;
