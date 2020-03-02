@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public float hitPoints;
+
     public enum enemyStates
     {
         Idle,
         Search,
         Attack,
-        Wander
+        Wander,
+        Rest
     }
     public enemyStates state;
 
@@ -39,6 +42,9 @@ public class EnemyController : MonoBehaviour
             case enemyStates.Wander:
                 Wander();
                 break;
+            case enemyStates.Rest:
+                Rest();
+                break;
         }
     }
 
@@ -60,5 +66,20 @@ public class EnemyController : MonoBehaviour
     void Wander()
     {
 
+    }
+
+    void Rest()
+    {
+
+    }
+
+    public bool canSee(GameObject target)
+    {
+        return false;
+    }
+
+    public bool canHear(GameObject target)
+    {
+        return false;
     }
 }
