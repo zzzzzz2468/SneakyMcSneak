@@ -13,9 +13,19 @@ public class FieldOfView : MonoBehaviour
 
     public List<Transform> visibleTargets = new List<Transform>();
 
+    private bool canSeePlayer = false;
+
     private void Start()
     {
         StartCoroutine("FindTargetsWithDelay", 0.2f);
+    }
+
+    private void Update()
+    {
+        if(visibleTargets.Count == 0 && canSeePlayer)
+        {
+            this.GetComponent<EnemyController>().canSee(false);
+        }
     }
 
     IEnumerator FindTargetsWithDelay(float delay)
@@ -39,9 +49,11 @@ public class FieldOfView : MonoBehaviour
             if(Vector3.Angle(transform.up, dirToTarget) < viewAngle / 2)
             {
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
-                if(!Physics2D.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
+                if (!Physics2D.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
                 {
                     visibleTargets.Add(target);
+                    this.GetComponent<EnemyController>().canSee(true);
+                    canSeePlayer = true;
                 }
             }
         }

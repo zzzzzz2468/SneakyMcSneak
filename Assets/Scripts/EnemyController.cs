@@ -23,7 +23,7 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-
+        print(state);
     }
 
     void EnemyStateMachine()
@@ -60,7 +60,7 @@ public class EnemyController : MonoBehaviour
 
     void Attack()
     {
-
+        
     }
 
     void Wander()
@@ -73,13 +73,18 @@ public class EnemyController : MonoBehaviour
 
     }
 
-    public bool canSee(GameObject target)
+    public bool canSee(bool see)
     {
-        return false;
+        if (see)
+            state = enemyStates.Attack;
+        else if (!see)
+            state = enemyStates.Search;
+        return see;
     }
 
     public bool canHear(GameObject target)
     {
+        state = enemyStates.Search;
         return false;
     }
 }
