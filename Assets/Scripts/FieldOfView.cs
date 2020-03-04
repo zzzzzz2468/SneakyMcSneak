@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
 {
+    //sets the radius of how far it can see and the angle that he can see at
     public float viewRadius;
     [Range(0,360)]
     public float viewAngle;
 
+    //layers his targets and obstacles are on
     public LayerMask targetMask;
     public LayerMask obstacleMask;
 
+    //the targets the enemy can see
     public List<Transform> visibleTargets = new List<Transform>();
 
+    //bool for if the player is being seen
     private bool canSeePlayer = false;
 
+    //starts the search process
     private void Start()
     {
         StartCoroutine("FindTargetsWithDelay", 0.2f);
@@ -22,12 +27,14 @@ public class FieldOfView : MonoBehaviour
 
     private void Update()
     {
+        //changes the enemy to be unable to see the player
         if(visibleTargets.Count == 0 && canSeePlayer)
         {
             this.GetComponent<EnemyController>().canSee(false);
         }
     }
 
+    //finds targets
     IEnumerator FindTargetsWithDelay(float delay)
     {
         while (true)
@@ -37,6 +44,7 @@ public class FieldOfView : MonoBehaviour
         }
     }
 
+    //Finds targets that are in the area that the enemy can see
     void FindVisibleTargets()
     {
         visibleTargets.Clear();
@@ -59,6 +67,7 @@ public class FieldOfView : MonoBehaviour
         }
     }
 
+    //detects where the player is inside of the circle
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
     {
         if (!angleIsGlobal)

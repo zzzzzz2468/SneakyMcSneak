@@ -6,6 +6,7 @@ using UnityEditor;
 [CustomEditor (typeof (FieldOfView))]
 public class FieldOfViewEditor : Editor
 {
+    //displays the angle, target pos, and the circle that the enemy can see inside
     private void OnSceneGUI()
     {
         FieldOfView fow = (FieldOfView)target;

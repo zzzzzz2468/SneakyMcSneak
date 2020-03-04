@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public float hitPoints;
+    public float timeToSearch = 3.0f;
 
     public enum enemyStates
     {
@@ -55,12 +56,12 @@ public class EnemyController : MonoBehaviour
 
     void Search()
     {
-
+        //StartCoroutine("SearchToWander", timeToSearch);
     }
 
     void Attack()
     {
-        
+
     }
 
     void Wander()
@@ -73,18 +74,35 @@ public class EnemyController : MonoBehaviour
 
     }
 
+    IEnumerator SearchToWander(float timeSearch)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(timeSearch);
+            state = enemyStates.Wander;
+            EnemyStateMachine();
+        }
+    }
+
     public bool canSee(bool see)
     {
         if (see)
+        {
             state = enemyStates.Attack;
+            EnemyStateMachine();
+        }
         else if (!see)
+        {
             state = enemyStates.Search;
+            EnemyStateMachine();
+        }
         return see;
     }
 
     public bool canHear(GameObject target)
     {
         state = enemyStates.Search;
+        EnemyStateMachine();
         return false;
     }
 }
