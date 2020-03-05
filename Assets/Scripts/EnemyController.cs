@@ -24,15 +24,18 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         print(state);
+        print("The enemy can hear " + hearPlayer);
+        print("The enemy can see " + seePlayer);
+
 
         if(hearPlayer == false && seePlayer == false)
         {
             state = enemyStates.Idle;
             EnemyStateMachine();
         }
-        if(hearPlayer == true)
+        if(hearPlayer == true || seePlayer == true)
         {
-            transform.LookAt(GameManager.gamemanager.player.transform);
+            transform.rotation = Quaternion.LookRotation(Vector3.forward, GameManager.gamemanager.player.transform.position);
         }
     }
 
