@@ -14,7 +14,7 @@ public class EnemyCanvas : MonoBehaviour
         offset = transform.position - enemy.transform.position;
     }
 
-    //moves the camera with the player
+    //moves the camera with the enemy
     void LateUpdate()
     {
         transform.position = enemy.transform.position + offset;

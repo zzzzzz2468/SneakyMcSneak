@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    //declaring variables
     public float hitPoints;
     public float timeToSearch = 3.0f;
     public GameObject detectionEye;
@@ -21,9 +22,10 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
+        //prints state
         print(state);
 
-
+        //detects if canhear and cansee
         if(hearPlayer == false && seePlayer == false)
         {
             state = enemyStates.Idle;
@@ -37,6 +39,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    //State Machine
     void EnemyStateMachine()
     {
         switch (state)
@@ -53,6 +56,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    //State actions
     void Idle()
     {
         
@@ -68,6 +72,7 @@ public class EnemyController : MonoBehaviour
 
     }
 
+    //If enemy cansee
     public bool canSee(bool see)
     {
         if (see)
@@ -87,6 +92,7 @@ public class EnemyController : MonoBehaviour
         return see;
     }
 
+    //if enemy canhear
     public bool canHear(bool hear)
     {
         if (hear)
@@ -106,6 +112,7 @@ public class EnemyController : MonoBehaviour
         return hear;
     }
 
+    //Detects if player is in range
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))

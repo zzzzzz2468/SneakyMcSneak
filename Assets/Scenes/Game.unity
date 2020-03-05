@@ -112,6 +112,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &51483537 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7283096301013577311, guid: 736d6ff4e9dcbc441afc78f0501a473e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6012539845220992368}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &145054011 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7072882548163117658, guid: 0acef2d7d0b574f479f16fe7db835e1e,
@@ -292,6 +298,7 @@ GameObject:
   - component: {fileID: 644652455}
   - component: {fileID: 644652454}
   - component: {fileID: 644652453}
+  - component: {fileID: 644652457}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -379,6 +386,19 @@ RectTransform:
   m_AnchoredPosition: {x: 4.7, y: 0}
   m_SizeDelta: {x: 5, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &644652457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644652452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7daa56781b3f31c46a0ac0641c7db855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 51483537}
 --- !u!1001 &1063997416
 PrefabInstance:
   m_ObjectHideFlags: 0

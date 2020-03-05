@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    //Declares variables
     public static GameManager gamemanager;
 
     private bool detected = false;
 
     public GameObject player;
 
+    //Keeps the gamemanager there
     private void Awake()
     {
 
@@ -21,14 +23,6 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
-        }
-    }
-
-    private void Update()
-    {
-        if(detected == true)
-        {
-            
         }
     }
 }

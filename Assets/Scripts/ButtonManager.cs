@@ -5,25 +5,20 @@ using UnityEngine.UI;
 
 public class ButtonManager : MonoBehaviour
 {
+    //declares all of the variables
     public Button playBtn;
-    public Button setBtn;
-    public Button backBtn;
 
     public GameObject manageScenes;
 
     public static ButtonManager manageButtons;
 
     private Button thePlayBtn;
-    private Button theSetBtn;
-    private Button theBackBtn;
 
     private void Awake()
     {
-        theBackBtn = backBtn;
-        theSetBtn = setBtn;
         thePlayBtn = playBtn;
 
-
+        //Gets the buttons from manage button script
         if (manageButtons == null)
         {
             manageButtons = this;
