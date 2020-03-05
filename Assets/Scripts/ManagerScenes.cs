@@ -89,9 +89,6 @@ public class ManagerScenes : MonoBehaviour
             case gameState.Game:
                 Game();
                 break;
-            case gameState.Settings:
-                Settings();
-                break;
             case gameState.Victory:
                 Victory();
                 break;
@@ -111,12 +108,6 @@ public class ManagerScenes : MonoBehaviour
     void Game()
     {
         SceneManager.LoadScene(1);
-    }
-
-    //goes to settings state
-    void Settings()
-    {
-        SceneManager.LoadScene(2);
     }
 
     //goes to victory state

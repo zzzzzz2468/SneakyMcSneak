@@ -34,9 +34,4 @@ public class ButtonManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    private void Start()
-    {
-        manageScenes.GetComponent<ManagerScenes>().AssignButtons(thePlayBtn, theSetBtn, theBackBtn);
-    }
 }

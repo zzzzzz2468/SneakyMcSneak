@@ -187,7 +187,7 @@ MonoBehaviour:
     m_Bits: 1024
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   visibleTargets: []
 --- !u!58 &224298172
 CircleCollider2D:

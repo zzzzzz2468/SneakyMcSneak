@@ -15,17 +15,13 @@ public class EnemyController : MonoBehaviour
     {
         Idle,
         Search,
-        Attack,
-        Wander,
-        Rest
+        Attack
     }
     public enemyStates state;
 
     void Update()
     {
         print(state);
-        print("The enemy can hear " + hearPlayer);
-        print("The enemy can see " + seePlayer);
 
 
         if(hearPlayer == false && seePlayer == false)
@@ -35,7 +31,9 @@ public class EnemyController : MonoBehaviour
         }
         if(hearPlayer == true || seePlayer == true)
         {
-            transform.rotation = Quaternion.LookRotation(Vector3.forward, GameManager.gamemanager.player.transform.position);
+            Vector3 somethingIliteralydontgiveasingleshitbro = GameManager.gamemanager.player.transform.position - transform.position;
+            float angle = Mathf.Atan2(somethingIliteralydontgiveasingleshitbro.y, somethingIliteralydontgiveasingleshitbro.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
     }
 
@@ -57,7 +55,7 @@ public class EnemyController : MonoBehaviour
 
     void Idle()
     {
-
+        
     }
 
     void Search()
