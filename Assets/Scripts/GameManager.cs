@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 
     private bool detected = false;
 
+    public GameObject player;
+
     private void Awake()
     {
 

@@ -6,6 +6,10 @@ public class EnemyController : MonoBehaviour
 {
     public float hitPoints;
     public float timeToSearch = 3.0f;
+    public GameObject detectionEye;
+
+    private bool hearPlayer;
+    private bool seePlayer;
 
     public enum enemyStates
     {
@@ -17,14 +21,19 @@ public class EnemyController : MonoBehaviour
     }
     public enemyStates state;
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         print(state);
+
+        if(hearPlayer == false && seePlayer == false)
+        {
+            state = enemyStates.Idle;
+            EnemyStateMachine();
+        }
+        if(hearPlayer == true)
+        {
+            transform.LookAt(GameManager.gamemanager.player.transform);
+        }
     }
 
     void EnemyStateMachine()
@@ -40,12 +49,6 @@ public class EnemyController : MonoBehaviour
             case enemyStates.Attack:
                 Attack();
                 break;
-            case enemyStates.Wander:
-                Wander();
-                break;
-            case enemyStates.Rest:
-                Rest();
-                break;
         }
     }
 
@@ -56,32 +59,12 @@ public class EnemyController : MonoBehaviour
 
     void Search()
     {
-        //StartCoroutine("SearchToWander", timeToSearch);
+
     }
 
     void Attack()
     {
 
-    }
-
-    void Wander()
-    {
-
-    }
-
-    void Rest()
-    {
-
-    }
-
-    IEnumerator SearchToWander(float timeSearch)
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(timeSearch);
-            state = enemyStates.Wander;
-            EnemyStateMachine();
-        }
     }
 
     public bool canSee(bool see)
@@ -90,19 +73,43 @@ public class EnemyController : MonoBehaviour
         {
             state = enemyStates.Attack;
             EnemyStateMachine();
+            detectionEye.SetActive(true);
+            seePlayer = true;
         }
         else if (!see)
         {
             state = enemyStates.Search;
             EnemyStateMachine();
+            detectionEye.SetActive(false);
+            seePlayer = false;
         }
         return see;
     }
 
-    public bool canHear(GameObject target)
+    public bool canHear(bool hear)
     {
-        state = enemyStates.Search;
-        EnemyStateMachine();
-        return false;
+        if (hear)
+        {
+            state = enemyStates.Search;
+            EnemyStateMachine();
+            detectionEye.SetActive(true);
+            hearPlayer = true;
+        }
+        else if (!hear)
+        {
+            state = enemyStates.Idle;
+            EnemyStateMachine();
+            detectionEye.SetActive(false);
+            hearPlayer = false;
+        }
+        return hear;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+            canHear(true);
+        }
     }
 }

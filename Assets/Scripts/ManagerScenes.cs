@@ -21,8 +21,6 @@ public class ManagerScenes : MonoBehaviour
 
     //the buttons to be used
     public Button playBtn;
-    public Button setBtn;
-    public Button backBtn;
 
     //refrence itself
     public static ManagerScenes managescenes;
@@ -45,8 +43,6 @@ public class ManagerScenes : MonoBehaviour
     public void AssignButtons(Button play, Button set, Button back)
     {
         playBtn = play;
-        setBtn = set;
-        backBtn = back;
     }
 
     void Start()
@@ -59,24 +55,6 @@ public class ManagerScenes : MonoBehaviour
         }
         else
             print("There is no game button");
-
-        //sets up the settings button
-        if (setBtn != null)
-        {
-            Button setBtnComp = setBtn.GetComponent<Button>();
-            setBtnComp.onClick.AddListener(SetOnClick);
-        }
-        else
-            print("There is no setting button");
-
-        //sets up the back button
-        if (backBtn != null)
-        {
-            Button backBtnComp = backBtn.GetComponent<Button>();
-            backBtnComp.onClick.AddListener(BackOnClick);
-        }
-        else
-            print("There is no setting button");
     }
 
     //click play
